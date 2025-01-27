@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="input_area">
+            <input type="text" id="display">
+        </div>
+        <div class="calc_elements">
+            <div class="button_rows">
+                <button onclick="clean('')">C</button>
+                <button onclick="del()">DEL</button>
+                <button onclick="percentage('%')">%</button>
+                <button onclick="press('/')">/</button>
+            </div>
+            <div class="button_rows">
+                <button onclick="press('7')">7</button>
+                <button onclick="press('8')">8</button>
+                <button onclick="press('9')">9</button>
+                <button onclick="press('*')">*</button>
+            </div>
+            <div class="button_rows">
+                <button onclick="press('4')">4</button>
+                <button onclick="press('5')">5</button>
+                <button onclick="press('6')">6</button>
+                <button onclick="press('-')">-</button>
+            </div>
+            <div class="button_rows">
+                <button onclick="press('1')">1</button>
+                <button onclick="press('2')">2</button>
+                <button onclick="press('3')">3</button>
+                <button onclick="press('+')">+</button>
+            </div>
+            <div class="button_rows">
+                <button onclick="press('.')">.</button>
+                <button onclick="press('0')">0</button>
+                <div class="equal_btn"> <button onclick="calc()">=</button> </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/index.js">
+        const display = document.getElementById("display")
+
+        function clean() {
+            display.value = ""
+        }
+
+        
+        // function calc() {
+        //     display.value = eval(display.value)
+        // }
+
+
+        // function calc() {
+        //     const result = eval(display.value);
+        //     display.value = parseFloat(result.toFixed(2));
+        // }
+        function calc() {
+            const result = math.evaluate(display.value);
+            display.value = result;
+        }
+        function press(x) {
+            display.value += x
+        }
+        function del() {
+            const inputValue = display.value;
+            // if (display.value.length > 0) {
+            //     display.value = display.value.slice(0, -1);
+            // }
+            if (inputValue.length > 0) {
+                display.value = inputValue.slice(0, -1);
+            }
+        }
+        function percentage() {
+            display.value = display.value / 100
+        }
+
+    </script>
+
+</body>
+
+</html>
